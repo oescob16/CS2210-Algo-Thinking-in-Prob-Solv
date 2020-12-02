@@ -8,6 +8,34 @@ The Problem:
 - From the starting point we have to find which path has the less cost to get to the last row and then return the minimum cost.
 - The starting point is always going to be any jth column from the first row, so our starting points are at A[0][j]
 - From the starting points we can only move one step to the down->left (A[i+1][j-1]), down (A[i+1][j]), or down->right (A[i+1][j+1]).
-- From those three posible choices we have to choose which one has the less cost to go down, so min(down-left,down,down-right)
+- From those three posible choices we have to choose which one has the less cost to go down, so min(down-left,down,down-right).
+- After we get to the last row we have to backtrack (acumulate the cost from that path).
 
-- 
+- Edge/Base Cases:
+- If we are at the first column and we go to the left (index out of bounds), return 0 (do nothing)
+- If we are at the last column and we to right (index out of bounds), return 0 (do nothing)
+- If we are in the last row, backtrack and acumulate the path's cost (cumulative sum).
+
+- For example, if we have this input:
+[ [1,2,3],
+  [4,5,6],
+  [7,8,9] ]
+  
+- We can go in this 17 directions (because we tried aprox. O(3^n) combinations of possible paths):
+  • [1,4,7], [1,4,8], [1,5,7], [1,5,8], [1,5,9]
+  • [2,4,7], [2,4,8], [2,5,7], [2,5,8], [2,5,9], [2,6,8], [2,6,9]
+  • [3,5,7], [3,5,8], [3,5,9], [3,6,8], [3,6,9]
+  
+ - After the cumulative sum of all of those paths we have to see which one has the less cost and return it.
+ 
+ However, there is a lot of repeated work, for example:
+  - In the paths [1,4,7], [2,4,7], and [3,4,7] we repeat the sub-path (sub-problem) [4,7]
+  - In the paths [1,5,7] and [2,5,7] we repeat the sub-path [5,7]
+ 
+ 2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
+ 
+ - So, we have to make use of a data structure that can help us avoid repeated work.
+ - If we think about it, to solve this problem non-recursively we have to take into consideration three things:
+    • The Edge/Base Cases,
+    • Cumulative sum,
+    • Min(Cumulative Sum).
