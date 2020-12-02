@@ -1,1 +1,13 @@
+The Problem:
+  Given a square array of integers A, we want the minimum sum of a falling path through A.
+  A falling path starts at any element in the first row, and chooses one element from each row. 
+  The next row's choice must be in a column that is different from the previous row's column by at most one.
+  
+1. Define the problem/solution recursively
 
+- From the starting point we have to find which path has the less cost to get to the last row and then return the minimum cost.
+- The starting point is always going to be any jth column from the first row, so our starting points are at A[0][j]
+- From the starting points we can only move one step to the down->left (A[i+1][j-1]), down (A[i+1][j]), or down->right (A[i+1][j+1]).
+- From those three posible choices we have to choose which one has the less cost to go down, so min(down-left,down,down-right)
+
+- 
