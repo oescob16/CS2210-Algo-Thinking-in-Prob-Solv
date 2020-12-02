@@ -37,5 +37,28 @@ The Problem:
  - So, we have to make use of a data structure that can help us avoid repeated work.
  - If we think about it, to solve this problem non-recursively we have to take into consideration three things:
     • The Edge/Base Cases,
+    • Path directions (left,down,right),
     • Cumulative sum,
     • Min(Cumulative Sum).
+ - If we want to store the min(cumulative sum) from each direction we would have to use a dp 2d array, 
+   where entry dp[i][j] is the minimum cumulative sum coming from each direction, so min(dp[i-1][j],dp[i][j],dp[i][j+1]). In addition, the entries dp[i][j] also means 
+   what our min fall path cost is if we are at that position, these are the sub-problems.
+   For example:
+        [1,2,3]
+   dp = [5,6,8] 
+        [11,12,14]
+   Subproblems:
+   dp[1][0] = 5 is the min fall path cost when path=[1,4] 
+   dp[1][2] = 6 is the min fall path cost when path=[2,4]
+   dp[1][2] = 8 is the min fall path cost when path=[3,5] 
+   
+   
+ - However, before doing anything we have to first have values to start making the min(cumulative sum), that is, fill the first row of dp with the first row of A. 
+   In other words, dp[0][:]=A[0][:]
+ - Since, we we want to get each sub-problem of the problem, we would start from the first row to all of the array.
+ - To avoid the index-out-of-bound exception we need to use if-conditions, that checks if our j<0 or j>=len(A[0]) we assign left = right = math.inf.
+ - Then, we would assign dp[i][j]=min(dp[i][j-1],dp[i][j],dp[i][j+1]
+ - Finally our output would be in the last row, so we would only have to find the minimum of that row and return it.
+ 
+ 3. Talk about how you used IDEAL and Duke 7 to tackle the problem
+ IDEAL:
