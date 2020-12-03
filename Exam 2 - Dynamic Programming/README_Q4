@@ -31,7 +31,7 @@ Edge/Base Cases:
         -> s -> ''
     eat -> eat -> eat -> eat (same with s2)
     
-    Compare s1 and s2, get cumulative sum and backtrack.
+    Compare s1[i] with all s2[i] and s2[i] with all s1[i], get cumulative sum and backtrack.
     There are so many repeated computations.
     
 - Translating this problem to a dp table (similar to edit_distance) will look like this:
@@ -42,9 +42,13 @@ Edge/Base Cases:
   '' 0  1 2 3  Here we first have to cover the edge case when s1 or s2 are empty.
   s  1  0 0 0  To make s1='' and s2='eat' be the same, we have to delete all characters from s2.
   e  2  0 0 0  The same applies when s2 is empty.
-  t  3  0 0 0
+  a  3  0 0 0
   
-  - Now we have t
+  - Now we have to fill the dp table. 
+  - Since we already fill the first row and first column we will start iterating at second row and second column.
+  - Whenever we see that s1[i] matches s2[i] (char1==char2) we will grab the value from the nearest top left corner, that is, dp[i-1][j-1], and assign it to dp[i][j].
+  - When char1 and char2 mismatch, then we will grab the left (s1) cumulative sum + s2[i] and the top cumulative sum (s2) + s1[i], 
+    and check which character (char1 and char2) has the less cost to delete and then add it to dp[i][j].
   
   
   
