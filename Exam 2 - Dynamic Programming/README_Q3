@@ -34,13 +34,12 @@ The problem:
      
   - Now we have to sum all of the cumulative sums (backtrack) from the dp array, so when we add 1+2+3=6 that will be our final answer.
      
-
 3. Talk about how you used IDEAL and Duke 7 to tackle the problem
 
 IDEAL:
- I: The problem is asking to find the minimum path from first row to last row, we are only allowed to move one step down-left, down, or down-right.
- D: The goal is to return an integer representing the minimum falling path and to avoid repeated computations by using dynamic programming.
- E: Given the input I tried to use it to try all the combinations and min(Cumulative sum) to solve the problem in a dp 2d array.
+ I: The problem is asking to find how many arithmetic sequences are is in an array A.
+ D: The goal is to return an integer representing the total amount of valid arithmetic sequences and to avoid repeated computation.
+ E: Given the input [1,2,3,4] I tried to find all possible arithmetic sequences in there, then I tried to find the relation between the smallest problem to the biggest one.
  A: I tried to come up with other inputs to trace it and check if tracing result gave me the expected output.
  L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
  
