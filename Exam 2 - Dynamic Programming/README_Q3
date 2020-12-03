@@ -1,4 +1,23 @@
 The problem:
-1.
-2.
-3.
+
+1. Define the problem/solution recursively
+
+2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
+
+3. Talk about how you used IDEAL and Duke 7 to tackle the problem
+
+IDEAL:
+ I: The problem is asking to find the minimum path from first row to last row, we are only allowed to move one step down-left, down, or down-right.
+ D: The goal is to return an integer representing the minimum falling path and to avoid repeated computations by using dynamic programming.
+ E: Given the input I tried to use it to try all the combinations and min(Cumulative sum) to solve the problem in a dp 2d array.
+ A: I tried to come up with other inputs to trace it and check if tracing result gave me the expected output.
+ L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
+ 
+ Duke 7 Steps:
+ 1. I used the given input and output.
+ 2. I traced how the problem is going to behave (pattern) with the input to give us the output.
+ 3. I noticed that once we go to other column there is unnecesary computation (repeated work).
+ 4. I traced (OneNote) my attempted solution (pseudo-code) to see if it would work with the given input.
+ 5. I translated succesfully my code.
+ 6. I ran other scenario that I traced to check if it gave me the desired output.
+ 7. I rename some variables, remove unnecesary lines, I applied some one-liners, and use libraries.
