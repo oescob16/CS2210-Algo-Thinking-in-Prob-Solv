@@ -1,6 +1,20 @@
 The problem:
+  A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.
+  Create a function that returns the number of arithmetic slices in A.
 
 1. Define the problem/solution recursively
+  - We can make a slice of the big problem in bunch of sub-problems, that is,to reduce the scope/array by one until we get to a sequence that is three. 
+  - Then we have to check if the subproblem is a valid arithmetic sequence, if it return 1, else 0. If the childs of a parent are true, then add +1 to the returned values.
+  - For example, if we have A=[1,2,3,4,5], the subproblems are the following:
+                 _____[1,2,3,4,5]_____
+                /                     \
+       (3) [1,2,3,4]               [2,3,4,5] (2)    
+           /       \               /       \
+   (1) [1,2,3]  [2,3,4] (1) (0) [2,3,4]   [3,4,5] (1)
+  
+  - Since [1,2,3] and [2,3,4] are valid, then the big problem [1,2,3,4] is also valid, so we will add 2+1=3.
+  - Since [2,3,4] and [3,4,5] are valid, then the big problem [2,3,4,5] is also valid, so we will add 1+1=2. However, we already computed [2,3,4] so we return 0.
+  - Since [1,2,3,4] and [2,3,4,5] are both a valid sequence, then we will add 3+2+1=6
 
 2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
 
