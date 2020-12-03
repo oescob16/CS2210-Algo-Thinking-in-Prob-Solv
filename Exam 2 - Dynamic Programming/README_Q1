@@ -64,7 +64,7 @@ The Problem:
  IDEAL:
  I: The problem is asking to find the minimum path from first row to last row, we are only allowed to move one step down-left, down, or down-right.
  D: The goal is to return an integer representing the minimum falling path and to avoid repeated computations by using dynamic programming.
- E: Given the input I tried to use the given input and tried all the combinations and min(Cumulative sum) to solve the problem in a dp 2d array.
+ E: Given the input I tried to use it to try all the combinations and min(Cumulative sum) to solve the problem in a dp 2d array.
  A: I tried to come up with other inputs to trace it and check if tracing result gave me the expected output.
  L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
  
