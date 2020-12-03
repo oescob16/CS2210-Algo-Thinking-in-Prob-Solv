@@ -15,8 +15,25 @@ The problem:
   - Since [1,2,3] and [2,3,4] are valid, then the big problem [1,2,3,4] is also valid, so we will add 2+1=3.
   - Since [2,3,4] and [3,4,5] are valid, then the big problem [2,3,4,5] is also valid, so we will add 1+1=2. However, we already computed [2,3,4] so we return 0.
   - Since [1,2,3,4] and [2,3,4,5] are both a valid sequence, then we will add 3+2+1=6
+  
+  Edge/Base Case:
+  - When len(A)<3, return/store 0
+  - When len(A)==3 and the difference between two consecutive numbers is not the same, return/store 0.
 
 2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
+
+  - Given the recursion tree we can use an array that stores the cumulative sum to represent the backtrack of the recursion from its children to its parent.
+  - DP array will be of size n+1 (to include 0) and it will be a zero array.
+  - Also, we have to handle the cases when len(A)<3, so dp[0]=dp[1]=0. Then we will start iteration at index 2.
+  - For example:
+    A=[1,2,3,4,5]
+    dp[0]=dp[1]=0 -> [0,0,0,0,0,0]
+    if (2-1)==(3-1), valid sequence, then dp[2]=dp[1]+1=1 -> [0,0,1,0,0,0]
+    if (4-3)==(3-2), valid sequence, then dp[3]=dp[2]+1=2 -> [0,0,1,2,0,0]
+    if (5-4)==(4-3), valid sequence, then dp[4]=dp[3]+1=3 -> [0,0,1,2,3,0]
+     
+  - Now we have to sum all of the cumulative sums (backtrack) from the dp array, so when we add 1+2+3=6 that will be our final answer.
+     
 
 3. Talk about how you used IDEAL and Duke 7 to tackle the problem
 
