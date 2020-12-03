@@ -33,22 +33,25 @@ Edge/Base Cases:
     
     Compare s1[i] with all s2[i] and s2[i] with all s1[i], get cumulative sum and backtrack.
     There are so many repeated computations.
-    
+
+2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
+
 - Translating this problem to a dp table (similar to edit_distance) will look like this:
+
+    ''    s    e    a
+'' [ 0,   115, 216, 313] Here we first have to cover the edge case when s1 or s2 are empty.
+ e [ 101, 0,   0,   0] To make s1='' and s2='sea' be the same, we have to delete all characters from s2. And, therefore make the cumulative sum of the ascii value.
+ a [ 198, 0,   0,   0] For instance, to delete 'sea' we have to delete all its characters and accumulate the ascii sum, so ord(s)=115 + ord(e)=216 + ord(a)=313.
+ t [ 314, 0,   0,   0] The same applies when s2 is empty and s1 is non-empty.
   
-     '' e a t
-  '' 0  1 2 3  Here we first have to cover the edge case when s1 or s2 are empty.
-  s  1  0 0 0  To make s1='' and s2='eat' be the same, we have to delete all characters from s2.
-  e  2  0 0 0  The same applies when s2 is empty.
-  a  3  0 0 0
-  
-  - To make the problem easier to understand, before using asii values, I'll use integers as the deletions.
-  
-  - Now we have to fill the dp table. 
-  - Since we already fill the first row and first column we will start iterating at second row and second column.
-  - Whenever we see that s1[i] matches s2[i] (char1==char2) we will grab the value from the nearest top left corner, that is, dp[i-1][j-1], and assign it to dp[i][j].
-  - When char1 and char2 mismatch, then we will grab the left (s1) cumulative sum + s2[i] and the top cumulative sum (s2) + s1[i], 
-    and check which character (char1 and char2) has the less cost to delete and then add it to dp[i][j].
+- Since we already fill the first row and first column we will start iterating at second row and second column.
+- Whenever we see that s1[i] matches s2[i] (char1==char2) we will grab the value from the nearest top left corner, that is, dp[i-1][j-1], and assign it to dp[i][j].
+- When char1 and char2 mismatch, then we will grab the left cumulative sum (s1) + s2[i] and the top cumulative sum (s2) + s1[i], 
+  and check which character (char1 and char2) has the less cost to delete and then add it to dp[i][j].
+- In short, at dp[i][j] we will store the sub-problems of the substring[i:j] we have right now.
+- For example, say we have the sub-problem dp[1][1] s1='e' and s2='s', then we have to grab the computation of deleting 's' and 'e' and add it together.
+    
+   
   
   
   
