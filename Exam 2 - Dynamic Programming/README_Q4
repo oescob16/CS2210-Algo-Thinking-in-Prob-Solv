@@ -24,11 +24,11 @@ Edge/Base Cases:
   
 - So,
     sea -> ea -> e -> ''
-           a -> ''
+                 a -> ''
         -> se -> s ->
-        -> e -> ''
+                 e -> ''
         -> sa -> a -> ''
-        -> s -> ''
+                 s -> ''
     eat -> eat -> eat -> eat (same with s2)
     
     Compare s1[i] with all s2[i] and s2[i] with all s1[i], get cumulative sum and backtrack.
@@ -36,13 +36,13 @@ Edge/Base Cases:
     
 - Translating this problem to a dp table (similar to edit_distance) will look like this:
   
-- To make the problem easier to understand, before using asii values, I'll use integers as the deletions.
-  
      '' e a t
   '' 0  1 2 3  Here we first have to cover the edge case when s1 or s2 are empty.
   s  1  0 0 0  To make s1='' and s2='eat' be the same, we have to delete all characters from s2.
   e  2  0 0 0  The same applies when s2 is empty.
   a  3  0 0 0
+  
+  - To make the problem easier to understand, before using asii values, I'll use integers as the deletions.
   
   - Now we have to fill the dp table. 
   - Since we already fill the first row and first column we will start iterating at second row and second column.
