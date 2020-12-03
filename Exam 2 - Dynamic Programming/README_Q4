@@ -1,1 +1,50 @@
+The Problem:
+  Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.
+  
+1. Define the problem/solution recursively
 
+- Given s1 and s2 we have to find the minimum ASCII sum of characters needed to make these two strings equal.
+- This problem uses the same idea as the edit_distance problem, only that instead of computing the minimum operations (replace, delete, insert)
+  to convert s1 to s2 we have to delete chars from both strings to make s1==s2.
+- If s1[i] != s2[i], then we are going to see which one has the less cost to delete + prev computations. 
+- If s1[i] == s2[i], then we are not going to delete anything, instead we will grab the prev ascii sum.
+
+Edge/Base Cases:
+- If s1 is the empty string and s2 is a non-empty string, then we will have to delete all the characters in s2 and acumulate the sum.
+- The same if s2 is empty.
+
+- For example:
+  
+  Input: s1 = "sea", s2 = "eat"
+  Output: 231
+  Here we are deleting 's' from s1 and t from s2. Why? Because if we delete those we will make s1==s2 and with a minimum cost. 
+
+- To get to the output in a recursive way we have to compare all chars from s1 to ach char in s2 by slicing, and likewise with s2, 
+  then we would grab the minimum of those computations
+  
+- So,
+    sea -> ea -> e -> ''
+           a -> ''
+        -> se -> s ->
+        -> e -> ''
+        -> sa -> a -> ''
+        -> s -> ''
+    eat -> eat -> eat -> eat (same with s2)
+    
+    Compare s1 and s2, get cumulative sum and backtrack.
+    There are so many repeated computations.
+    
+- Translating this problem to a dp table (similar to edit_distance) will look like this:
+  
+- To make the problem easier to understand, before using asii values, I'll use integers as the deletions.
+  
+     '' e a t
+  '' 0  1 2 3  Here we first have to cover the edge case when s1 or s2 are empty.
+  s  1  0 0 0  To make s1='' and s2='eat' be the same, we have to delete all characters from s2.
+  e  2  0 0 0  The same applies when s2 is empty.
+  t  3  0 0 0
+  
+  - Now we have t
+  
+  
+  
