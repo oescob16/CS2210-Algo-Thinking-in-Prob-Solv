@@ -61,7 +61,22 @@ Edge/Base Cases:
  a [ 198, 313, 212, 115]
  t [ 314, 429, 328, 231]
  
-3. 
+3. Talk about how you used IDEAL and Duke 7 to tackle the problem
+ IDEAL:
+ I: The problem is asking to find the minimum ascii sum deletions needed to make s1 == s2.
+ D: The goal is to return an integer representing the min delete ascii sum needed to make two strings equal and to avoid repeated computations.
+ E: Given the input I use it to check all possible sub-problems to get the recursive thinking on this problem and I tried to find the relations between the output and subproblems.
+ A: I tried to come up with other inputs to trace it and check if the tracing result gave me the expected output.
+ L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
+ 
+ Duke 7 Steps:
+ 1. I used the given input and output.
+ 2. I traced how the problem is going to behave (pattern) with the input to give us the output.
+ 3. I noticed that once we get all the substrings there is repeated work.
+ 4. I traced (OneNote) my attempted solution (pseudo-code) to see if it would work with the given input.
+ 5. I translated succesfully my code.
+ 6. I ran other scenario that I traced to check if it gave me the desired output.
+ 7. I rename some variables, remove unnecesary lines, I applied some one-liners, and use libraries.
 
     
    
