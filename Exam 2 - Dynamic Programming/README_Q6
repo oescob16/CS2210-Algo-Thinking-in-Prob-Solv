@@ -30,7 +30,7 @@ The problem:
 
 If we analyze the recursion tree we can analyze multiple things:
 1. We have to get the previous max value associated with the current number we are breaking, so dp[i]. For instance, dp[4]=3
-2. We have to get the previous previous max value (associated with one of the prev computations) * current number, so dp[i-j]*j. For instance, dp[4-2]=dp[2]=1*1*2=2. 
+2. We have to get the previous previous max value (associated with the child of 4) * current number, so dp[i-j]*j. For instance, dp[4-2]=dp[2]=1*1*2=2. 
 3. We have to get the current max value associated with the current numbers in which we are, so (i-j)*j. For instance, (4-2)*2=4.
 
 Then, we have to compute the maximum of those 3 computations n^2 times, until we get to the maximum value. So, dp[i]=max(prev_max1,prev_max2,curr_max)
