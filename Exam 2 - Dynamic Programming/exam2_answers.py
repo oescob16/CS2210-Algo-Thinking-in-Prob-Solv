@@ -61,8 +61,7 @@ def min_ascii_del_sum(s1,s2):
             if s1[r-1]==s2[c-1]: # Characters match, grab the top left value.
                 dp[r][c]=dp[r-1][c-1]
             else: # Mismatch, grab the minimum 2 prev computation (left and top), min(left+s2[r-1],top+s1[c-1]) 
-                dp[r][c]=min(dp[r-1][c]+ord(s1[r-1]), 
-                             dp[r][c-1]+ord(s2[c-1]))
+                dp[r][c]=min(dp[r-1][c]+ord(s1[r-1]), dp[r][c-1]+ord(s2[c-1]))
     return dp[-1][-1]
 
 def integer_break(n):
