@@ -28,13 +28,19 @@ The problem:
  
 2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
 
+If we analyze the recursion tree we can analyze multiple things:
+1. We have to get the previous max value associated with the current number we are breaking, so dp[i]. For instance, dp[4]=3
+2. We have to get the previous previous max value * current number, so dp[i-j]*j. For instance, dp[4-2]=dp[2]=1*1*2=2. 
+3. We have to get the current max value associated with the current numbers in which we are, so (i-j)*j. For instance, (4-2)*2=4.
+
+Then, we have to compute the maximum of those 3 computations n^2 times, until we get to the maximum value. So, dp[i]=max(prev_max1,prev_max2,curr_max)
 
 3. Talk about how you used IDEAL and Duke 7 to tackle the problem
 
 IDEAL:
- I: The problem is asking to find how many arithmetic sequences are is in an array A.
- D: The goal is to return an integer representing the total amount of valid arithmetic sequences and to avoid repeated computation.
- E: Given the input [1,2,3,4] I tried to find all possible arithmetic sequences in there, then I tried to find the relation between the smallest problem to the biggest one.
+ I: The problem is asking to find the maximum product when we break over and over n number that add up to its sum.
+ D: The goal is to return the max product of integer n and to avoid repeated computations.
+ E: Given the input 1,2,3,4,5 I tried to break those integers into 2 integers that add up and then compute the mas value, after that I tried to find a pattern.
  A: I tried to come up with other inputs to trace it and check if tracing result gave me the expected output.
  L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
  
