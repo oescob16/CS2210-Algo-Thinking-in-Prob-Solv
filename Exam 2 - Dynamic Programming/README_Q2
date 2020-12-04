@@ -1,1 +1,45 @@
+The Problem:
+  Given a string, your task is to count how many palindromic substrings in this string.
+  The substrings with different start indexes or end indexes are counted as different substrings
+  even they consist of same characters.
+  
+1. Define the problem/solution recursively
+  - Basically the problem is asking to find how many substrings inside the string are palindrome. 
+    Therefore, we have to create all possible substrings of a string and then check if they are palindromes.
+  - A palindrome is a word that is read the same from left to right and right to left.
+  
+  Base/Edge Cases: 
+  - A single character is a palindrome, so len(s)==1
+  - A string of size 2 is a palindrome if the first and last character are the same, so len(s)==2 and s[0]==s[1].
+  - A string bigger than size 2 is a palindrome if its first and last characters are the same and its substrings (subproblems) are also palindromes.
+    For instance len(s)>2 and s[0]==s[-1] and substrings(s[i:j]).
+  
+  With that said we have to find the way to create all possible substrings in a string using the given input and find the pattern, so:
+  If we have s='cbcbc', then our recursion tree will look like this:
+  
+                                cbcbc -> c -> cb -> cbc -> cbcb -> cbcbc 
+                                  |
+     Remove first char          bcbc -> b -> bc -> bcb -> bcbc            
+  from str using recursion        |
+            |                    cbc -> c -> cb -> cbc          --> For loop that checks if we have a palidnrome
+            V                     |         
+                                 bc -> b -> bc
+                                 
+  As we can see there is a lot of repeated computations in the recursion tree, so we have to store the computations in a dp table.
 
+2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
+  
+- If we analize the definition of a substring, we will know that a substring is a slice of a strings from a start to ending index, 
+  we can define this as: substring = s[start:end]
+  
+- Given that definition, we need a data structure that can help us know the starting index and ending index in which we are, 
+  to know which substrings we are at that moment.
+- A 2d array sounds like a good option, since we can use the rows as the starting indices and the columns as our ending indices. 
+  In other words, we will use the ith row and jth col to know that substring in which we are, so substring=s[i:j].
+- In each cell, we will store a 1 if s[i:j] is a palindrome, else we will store a -1. So, dp[i][j] = bool(is s[i:j] a palindrome?)
+- Since, we want to reduce the repeated computations our scope will be an upper triangle, we will ignore whatever is below of it.
+- 
+  
+  
+ 
+3. Talk about how you used IDEAL and Duke 7 to tackle the problem
