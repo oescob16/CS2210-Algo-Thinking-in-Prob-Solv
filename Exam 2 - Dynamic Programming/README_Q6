@@ -1,0 +1,48 @@
+The problem:
+ Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. 
+ Return the maximum product you can get.
+ 
+1. Define the problem/solution recursively
+
+- This problem has the purpose of breaking a number n into two numbers that when added are n, then we have to find the maximum product of those breaking numbers.
+  For instance, if we have n=4 the recursion tree will be as follows:
+  
+                                                ________________5________________
+                                               /        |             |          \
+                                            1 * 4     2 * 3         3 * 2     4  *  1
+                                               / \    |   |         |   |    / \
+                                             3*1 2*2  1   2         2   1  3*1 2*2 
+                                             |   | |                       |   | |
+                                             2   1 1                       2   1 1
+                                             
+- As we can see there is a lot of repeated computation and that's evident in the halves of the tree, what we have in one side we also have it in the other side.
+  In addition we are abble to see that the base cases would be 1 and 2, since when we are breaking a number repeteadly we will always get either a 1 
+  (that comes from a 2 and 1) or a 2 (that comes from a 3).
+  
+- Edge/Base Cases:
+  When n==1 or n==2 return 1
+  When n==3 return 2
+  
+- I can conclude that the recursion part will be when breaking a number into the sum of two integers until we get to a 3, 2, or 1.
+- Also, we can se that the solution is 3*2*1, which are the leaves.
+ 
+2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
+
+
+3. Talk about how you used IDEAL and Duke 7 to tackle the problem
+
+IDEAL:
+ I: The problem is asking to find how many arithmetic sequences are is in an array A.
+ D: The goal is to return an integer representing the total amount of valid arithmetic sequences and to avoid repeated computation.
+ E: Given the input [1,2,3,4] I tried to find all possible arithmetic sequences in there, then I tried to find the relation between the smallest problem to the biggest one.
+ A: I tried to come up with other inputs to trace it and check if tracing result gave me the expected output.
+ L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
+ 
+ Duke 7 Steps:
+ 1. I used the given input and output.
+ 2. I traced how the problem is going to behave (pattern) with the input to give us the output.
+ 3. I noticed that once we go to other column there is unnecesary computation (repeated work).
+ 4. I traced (OneNote) my attempted solution (pseudo-code) to see if it would work with the given input.
+ 5. I translated succesfully my code.
+ 6. I ran other scenario that I traced to check if it gave me the desired output.
+ 7. I rename some variables, remove unnecesary lines, I applied some one-liners, and use libraries.
