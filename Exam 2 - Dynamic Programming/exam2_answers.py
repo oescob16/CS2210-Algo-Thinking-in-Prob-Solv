@@ -18,8 +18,25 @@ def minimum_fall_path_sum(A):
             left = math.inf if c-1<0 else A[r][c-1] # avoid index out-of-bounds
             right = math.inf if c+1>=cols else A[r][c+1] # avoid index out-of-bounds
             dp[r][c] += min(left,down,right) + A[r-1][c] # get min(l,d,r) + prev computations from top (cumulative sum)
-    print_dp(dp)
     return np.min(dp[-1:][:]) # Get minimum fall path (cumulative) sum
+
+def palindromic_substr(s):
+    n = len(s)
+    dp=[[0]*n for _ in range(n)]
+    for i in range(n): # Every single char is a palindrome
+        dp[i][i]=1
+    for start in range(n):
+        for end in range(start+1,n):
+            same_char = (s[start]==s[end]) # same char at start and end
+            equal_2 = (dp[start][end-1] == dp[start+1][end] == 1) # len(substr)==2
+            bigger_than_2 = (dp[start+1][end-1] == 1) # len(substr)>2
+            if equal_2 and same_char: 
+                dp[start][end] = int(same_char)
+            elif bigger_than_2 and same_char: 
+                dp[start][end] = int(same_char)
+            else:
+                dp[start][end] = 0
+    return sum(row.count(1) for row in dp)
 
 def arithmetic_slices(A):
     n = len(A)
@@ -51,6 +68,13 @@ def min_ascii_del_sum(s1,s2):
 print(minimum_fall_path_sum([[1,2],[4,5]]))
 print(minimum_fall_path_sum([[1,2,3],[4,5,6],[7,8,9]]))
 print(minimum_fall_path_sum([[0,1,0],[3,0,3],[9,5,2]]))
+
+print(palindromic_substr('a'))
+print(palindromic_substr('ab')) 
+print(palindromic_substr('aa'))                
+print(palindromic_substr('abc'))
+print(palindromic_substr('bab'))
+print(palindromic_substr('aaba'))
 
 print(arithmetic_slices([1,3,5,7,9]))
 print(arithmetic_slices([1,2,3,4]))
