@@ -66,7 +66,22 @@ The Problem:
   'b' 1[0,  1,  -1]    left==down==1 but b!=a so dp[1][2]=-1.
   'a' 2[0,  0,   1]
   
+  Finally, we have to count how many 1's (palindromes) our dp matrix has and return the value.
+  
 3. Talk about how you used IDEAL and Duke 7 to tackle the problem
 IDEAL:
-Duke 7 steps:
+ I: The problem is asking to find how many substrings are palindromes.
+ D: The goal is to return an integer representing the total amount of substrings palindromes there are and avoid repeated computation.
+ E: Given the input 'aaa' I tried to find all possible substrings and tried to find a relation between the substrings and indices.
+ A: I tried to come up with other inputs to trace it and check if tracing result gave me the expected output.
+ L: Once I solved the problem I realized that even though I know many stuff about programming there are a lot many techniques to learn, I have to improve in DFS, BFS, and DP.
+ 
+ Duke 7 Steps:
+ 1. I used the given input and output.
+ 2. I traced how the problem is going to behave (pattern) with the input to give us the output.
+ 3. I noticed that once we go to other column there is unnecesary computation (repeated work).
+ 4. I traced (OneNote) my attempted solution (pseudo-code) to see if it would work with the given input.
+ 5. I translated succesfully my code.
+ 6. I ran other scenario that I traced to check if it gave me the desired output.
+ 7. I rename some variables, remove unnecesary lines, I applied some one-liners, and use libraries.
 
