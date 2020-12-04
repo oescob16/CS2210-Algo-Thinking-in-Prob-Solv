@@ -25,7 +25,7 @@ The Problem:
             V                     |         
                                  bc -> b -> bc
                                  
-  As we can see there is a lot of repeated computations in the recursion tree, so we have to store the computations in a dp table.
+  As we can see there is a lot of repeated computations in the recursion tree, so we have to store the computations in a data structure.
 
 2. Briefly talk about how you plan to store solutions to sub-problems and combining them to solve the global problem
   
@@ -38,8 +38,35 @@ The Problem:
   In other words, we will use the ith row and jth col to know that substring in which we are, so substring=s[i:j].
 - In each cell, we will store a 1 if s[i:j] is a palindrome, else we will store a -1. So, dp[i][j] = bool(is s[i:j] a palindrome?)
 - Since, we want to reduce the repeated computations our scope will be an upper triangle, we will ignore whatever is below of it.
-- 
+
+- Since we first have to fill the base case, when len(s)==1, we will traverse the 2d array and whenever we see that i==j we are going to 
+  put a one since one char is a palindrome. For instance, if s=ab, our table will look like this:
   
+        'a' 'a'
+         0   1
+  'a' 0 [1,  0]
+  'a' 1 [0,  1]
   
- 
+- Then, we have to traverse again but now to get the substrings that are len(s)>=2.
+- First we have to check if the start char and end char are the same, then we need the following conditions:
+- To know if a string in which we are is equal to two, we have to take in mind that if there is a 1 in the left and down, then this means we are in a substring of size 2.
+- To know if a substring is bigger than two, we have to check if we are on the right side of a 1 (one's from the single char scenario), for this we have to 
+  look diagonally to the left (bottom-left), this operation means that we are going to look to the inner substring inside this substring.
+  For instance, if we have s=aba, in this case we are going to look for b when we are in the last a.
+  
+  In short, 
+  - dp[start+1][col]==dp[start][col-1]==1 and s[start]==s[end]. len(s)==2.
+  - dp[start+1][col-1]==1 and s[start]==s[end].
+  
+  So, if we have s='aba', then our dp matrix will look like this:
+      
+       'a' 'b'  'a'
+        0   1    2
+  'a' 0[1, -1,   1]    left==down==1 but a!=b so dp[0][1]=-1, bottom-left==1 (b is a substring of aba) and a==b so dp[0][2]=1
+  'b' 1[0,  1,  -1]    left==down==1 but b!=a so dp[1][2]=-1.
+  'a' 2[0,  0,   1]
+  
 3. Talk about how you used IDEAL and Duke 7 to tackle the problem
+IDEAL:
+Duke 7 steps:
+
